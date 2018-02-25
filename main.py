@@ -4,10 +4,10 @@ import sklearn.datasets
 from functions import *
 
 # init
-max_iterations = 50
-n_datasets = 40
-n_datapoints = 200
-mutation_factor = 1
+max_iterations = 50000
+n_datasets = 1
+n_datapoints = 500
+mutation_factor = 2.5
 h = 0.01 # grid view resolution
 
 best_weights = None

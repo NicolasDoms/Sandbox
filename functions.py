@@ -45,13 +45,18 @@ class Node:
         self.weights = copy.deepcopy(weights)
 
     def mutate(self,s):
+        limit = 5
         for i in range(len(self.weights)):
             r = np.random.rand()
-            if r < 0.95:
-                self.weights[i] = self.weights[i] + np.random.normal(0,s)
+            if r < 0.99:
+                self.weights[i] = self.weights[i] + np.random.normal(0,s*0.1)
             else:
                 # wild mutation!!!
                 self.weights[i] = self.weights[i] + np.random.normal(0,s*10)
+            if self.weights[i] > limit:
+                self.weights[i] = limit
+            if self.weights[i] < -limit:
+                self.weights[i] = -limit
 
 
 class NN:
