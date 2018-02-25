@@ -47,7 +47,7 @@ class Node:
     def mutate(self,s):
         for i in range(len(self.weights)):
             r = np.random.rand()
-            if r < 0.99:
+            if r < 0.95:
                 self.weights[i] = self.weights[i] + np.random.normal(0,s)
             else:
                 # wild mutation!!!
@@ -67,8 +67,9 @@ class NN:
         self.node7 = Node(4)
         self.node8 = Node(4)
         self.node9 = Node(4)
+        self.node10 = Node(4)
 
-        self.node10 = Node(3)
+        self.node11 = Node(4)
         self.inputsize = inputsize
 
     def load_inputs(self, inputs):
@@ -90,10 +91,11 @@ class NN:
         out7 = self.node7.activate([out3,out4,out5,out6])
         out8 = self.node8.activate([out3,out4,out5,out6])
         out9 = self.node9.activate([out3,out4,out5,out6])
+        out10 = self.node10.activate([out3,out4,out5,out6])
 
-        out10 = self.node10.activate([out7,out8,out9])
+        out11 = self.node11.activate([out7,out8,out9,out10])
 
-        return out10
+        return out11
 
     def activate(self,inputs):
         self.load_inputs(inputs)
@@ -112,6 +114,7 @@ class NN:
         w.append(self.node8.get_weights())
         w.append(self.node9.get_weights())
         w.append(self.node10.get_weights())
+        w.append(self.node11.get_weights())
         return w
 
     def set_weights(self, weights):
@@ -125,6 +128,7 @@ class NN:
         self.node8.set_weights(weights[7])
         self.node9.set_weights(weights[8])
         self.node10.set_weights(weights[9])
+        self.node11.set_weights(weights[10])
 
     def mutate(self,s):
         self.node1.mutate(s)
@@ -137,6 +141,7 @@ class NN:
         self.node8.mutate(s)
         self.node9.mutate(s)
         self.node10.mutate(s)
+        self.node11.mutate(s)
 
 
 def call(fl):
